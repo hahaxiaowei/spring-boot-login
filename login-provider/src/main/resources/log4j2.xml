@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="spring.application.name">
+            biz-login-provider
+        </Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout>
+                <pattern>%d %p [${ctx:spring.application.name},%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-Span-Export}] %C{1.} [%t] %m%n</pattern>
+            </PatternLayout>
+        </Console>
+        <!-- 按日期每天生成log文件 -->
+        <RollingFile name="RollingFile" fileName="/root/app_logs/${ctx:spring.application.name}.log"
+                     filePattern="/root/app_logs/${ctx:spring.application.name}-%d{yyyy-MM-dd}.log">
+            <PatternLayout>
+                <pattern>%d %p [${ctx:spring.application.name},%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-Span-Export}] %C{1.} [%t] %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+            </Policies>
+
+            <!-- log文件只打印error级别信息 -->
+            <Filters>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.huntkey.rx" level="DEBUG" additivity="false">
+            <appender-ref ref="Console" />
+            <appender-ref ref="RollingFile" />
+        </Logger>
+
+        <!-- 输出info级别信息 Root 节点不可删除，但是root的level 可以在yml文件中配置-->
+        <Root>
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="RollingFile" />
+        </Root>
+    </Loggers>
+</Configuration>

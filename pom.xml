@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.huntkey.rx.sceo</groupId>
+	<artifactId>biz-login-authentication</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>biz-login-authentication</name>
+	<description>biz-login-authentication</description>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>login-common</module>
+		<module>login-provider</module>
+	</modules>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.4.5.RELEASE</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.huntkey.rx.commons.utils</groupId>
+			<artifactId>sceo-commons-utils</artifactId>
+			<version>1.0.2-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.huntkey.rx.sceo.util</groupId>
+			<artifactId>redis-start</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.huntkey.rx</groupId>
+			<artifactId>biz-class-starter</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.huntkey.rx.sceo</groupId>
+					<artifactId>biz-driver-method-plugin</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>Local Nexus Repository</name>
+			<url>http://10.3.98.23:8081/repository/maven-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Local Nexus Repository</name>
+			<url>http://10.3.98.23:8081/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+</project>

@@ -1,0 +1,9 @@
+#k8s eureka instance-id
+k8s.eureka.instanceId: ${LOGIN_PROVIDER_SERVICE_HOST}:${LOGIN_PROVIDER_SERVICE_PORT}
+
+spring:
+  cloud:
+    config:
+      name: rx-config-base
+      profile: dev
+      uri: http://10.3.98.153:9999

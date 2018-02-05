@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: login-provider
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: login-provider
+    spec:
+      containers:
+        - name: login-provider
+          image: 10.3.98.241/biz_login_authentication/login-provider
+          ports:
+            - containerPort: 9010
+#           resources: 
+#             limits: 
+#             cpu: 0.5
+#             memory: 512Mi
+#          volumeMounts:
+#            - mountPath: /sceo-log/log
+#              name: go-logs
+#      volumes:
+#      - name: go-logs
+#        hostPath:
+#          path: /sceo-log/log
